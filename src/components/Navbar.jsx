@@ -1,26 +1,27 @@
 import { AppBar, IconButton, Toolbar, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import React from "react";
+import "../App.css";
 
 const Navbar = () => {
   return (
-    <AppBar position="sticky" color="transparent" elevation={0}>
-      <Toolbar disableGutters maxWidth="100%">
+    <AppBar position="fixed" color="transparent" elevation={0}>
+      <Toolbar disableGutters maxWidth="100%" className="navbar">
         <Typography
           variant="h4"
           noWrap
-          color="black"
+          color="white"
           href="/"
-          sx={{ pt: 1, pr: 2, pb: 1, pl: 2, display: "flex", flexGrow: 1 }}
+          sx={{ pt: 2, pr: 2, pb: 2, pl: 3, display: "flex", flexGrow: 1 }}
         >
           Sweat Plan
         </Typography>
         <IconButton
           size="large"
-          color="inherit"
-          sx={{ pt: 0, pr: 2, pb: 1, pl: 2 }}
+          color="white"
+          sx={{ pt: 0, pr: 3, pb: 1, pl: 2 }}
         >
-          <MenuIcon sx={{ color: "black" }} />
+          <MenuIcon sx={{ color: "white" }} fontSize="large" />
         </IconButton>
       </Toolbar>
     </AppBar>
