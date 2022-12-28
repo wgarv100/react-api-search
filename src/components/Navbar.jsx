@@ -6,7 +6,7 @@ import "../App.css";
 const Navbar = () => {
   return (
     <AppBar position="fixed" color="transparent" elevation={0}>
-      <Toolbar disableGutters maxWidth="100%" className="navbar">
+      <Toolbar disableGutters className="navbar">
         <Typography
           variant="h4"
           noWrap
