@@ -1,16 +1,11 @@
-import { Button, Stack, TextField, Box, Typography } from "@mui/material";
+import { Button, Stack, TextField, Box } from "@mui/material";
+import { Container } from "@mui/system";
 import React, { useState } from "react";
 
 import { options, fetchData } from "../utilities/fetchData";
-import Exercises from "./Exercises";
 
-const Search = () => {
+const Search = ({ setExercises }) => {
   const [search, setSearch] = useState("");
-  const [exercises, setExercises] = useState([]);
-  // const exercises = [
-  //   { name: "hammer curl", target: "bicep", id: 1 },
-  //   { name: "leg curl", target: "leg", id: 2 },
-  // ];
 
   const handleSearch = async () => {
     if (search) {
@@ -25,29 +20,31 @@ const Search = () => {
           item.bodyPart.toLowerCase().includes(search) ||
           item.equipment.toLowerCase().includes(search)
       );
+
       setSearch("");
       setExercises(searchedExercises);
     }
   };
   return (
     <>
-      <Box>
-        <Stack direction="row">
-          <TextField
-            onChange={(e) => setSearch(e.target.value.toLowerCase())}
-            className="search-bar"
-            variant="outlined"
-            color="error"
-            placeholder="Search for a workout..."
-            autoComplete="false"
-            fullWidth
-          />
-          <Button onClick={handleSearch} variant="contained" color="error">
-            Search
-          </Button>
-        </Stack>
+      <Box sx={{ mt: 5 }}>
+        <Container maxWidth="xl">
+          <Stack direction="row">
+            <TextField
+              onChange={(e) => setSearch(e.target.value.toLowerCase())}
+              className="search-bar"
+              variant="outlined"
+              color="error"
+              placeholder="Search for a workout..."
+              autoComplete="false"
+              fullWidth
+            />
+            <Button onClick={handleSearch} variant="contained" color="error">
+              Search
+            </Button>
+          </Stack>
+        </Container>
       </Box>
-      <Exercises exercises={exercises} />
     </>
   );
 };

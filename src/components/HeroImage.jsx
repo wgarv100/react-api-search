@@ -8,9 +8,7 @@ const HeroImage = () => {
       <Box
         className="home-hero-image"
         sx={{ display: { xs: "none", md: "block" } }}
-      >
-        <Container maxWidth="sm" sx={{ pt: "45vh" }}></Container>
-      </Box>
+      ></Box>
       <Box sx={{ display: { xs: "block", md: "none" } }}>
         <img width="100%" src={HomeHeroImage} />
         <Container maxWidth="sm" sx={{ p: 0 }}></Container>
