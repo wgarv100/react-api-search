@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useState } from "react";
 
 // bodyPart:"string"
 // equipment:"string"
@@ -18,6 +18,19 @@ import React from "react";
 // target:"string"
 
 const ExerciseCard = ({ exercise }) => {
+  const [addExercise, setAddExercise] = useState([]);
+
+  const addExerciseToDB = async () => {
+    setAddExercise([
+      exercise.id,
+      exercise.name,
+      exercise.gifUrl,
+      exercise.target,
+    ]);
+    // use addExercise to send data to the server
+  };
+  // clear addExercise state
+
   return (
     <Container maxWidth="xl">
       <Box>
@@ -34,6 +47,7 @@ const ExerciseCard = ({ exercise }) => {
             <Typography variant="body2">
               {exercise.target.toUpperCase()}
             </Typography>
+            <Typography variant="body2">{exercise.id}</Typography>
           </CardContent>
           <CardActionArea>
             <Button
@@ -41,6 +55,7 @@ const ExerciseCard = ({ exercise }) => {
               color="error"
               size="medium"
               sx={{ m: 2 }}
+              onClick={addExerciseToDB}
             >
               Add
             </Button>

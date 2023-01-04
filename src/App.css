@@ -8,10 +8,12 @@
   background: url(./assets/images/HomeHeroImage.png);
   background-size: cover;
   background-position: center, center;
+  margin-top: 75px;
 }
 .search-bar {
   background-color: white;
 }
 .navbar {
   background-color: black;
+  height: 75px;
 }
