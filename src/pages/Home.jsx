@@ -12,7 +12,6 @@ const Home = () => {
     <Box>
       <HeroImage />
       <Search setExercises={setExercises} />
-
       {exercises.length ? (
         <Exercises key={exercises.id} exercises={exercises} />
       ) : null}
