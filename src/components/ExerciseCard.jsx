@@ -8,7 +8,9 @@ import {
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useState } from "react";
+import React from "react";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../firebase-config";
 
 // bodyPart:"string"
 // equipment:"string"
@@ -18,18 +20,15 @@ import React, { useState } from "react";
 // target:"string"
 
 const ExerciseCard = ({ exercise }) => {
-  const [addExercise, setAddExercise] = useState([]);
-
   const addExerciseToDB = async () => {
-    setAddExercise([
-      exercise.id,
-      exercise.name,
-      exercise.gifUrl,
-      exercise.target,
-    ]);
-    // use addExercise to send data to the server
+    // saves the selected exercise object to the database
+    await addDoc(collection(db, "savedExercises"), {
+      id: exercise.id,
+      name: exercise.name,
+      gifUrl: exercise.gifUrl,
+      target: exercise.target,
+    });
   };
-  // clear addExercise state
 
   return (
     <Container maxWidth="xl">
