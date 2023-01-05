@@ -6,24 +6,26 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
-import { Box, Container, Stack } from "@mui/system";
-import React, { useEffect, useState } from "react";
+import { Box, Container } from "@mui/system";
+import React, { useState } from "react";
+import { getDocs, collection } from "firebase/firestore";
+import { db } from "../firebase-config";
 
-const SavedExercisesCard = ({ exercises }) => {
-  // useState to set deleteExercise ID
-  const [deleteExercise, setDeleteExercise] = useState();
+const SavedExercisesCard = () => {
+  const [dbDatas, setDbDatas] = useState([]);
 
-  // useEffect to pull data each time page loads
-  // dependancy to retrieve data once exercise is deleted
-  useEffect(() => {
-    const pullExercisesFromDB = async () => {
-      // populate the card with the data
-    };
-  }, [deleteExercise]);
+  // making a connection to the collection
+  const colRef = collection(db, "savedExercises");
 
-  const deleteExerciseFromDB = async () => {
-    // grab the exercise.id from the specific exercise
-    setDeleteExercise("firebase document id");
+  const pullSavedExercises = async () => {
+    // pulling and saving collection data
+    const savedExercises = await getDocs(colRef);
+    // setting state to mapped collection of exercises
+    setDbDatas(
+      savedExercises.docs.map((savedExercise) => ({
+        ...savedExercise.data(),
+      }))
+    );
   };
 
   return (
@@ -31,23 +33,13 @@ const SavedExercisesCard = ({ exercises }) => {
       <Container maxWidth="xl">
         <Box>
           <Card>
-            <CardMedia
-              component="img"
-              //   alt={exercise.name}
-              //   image={exercise.gifUrl}
-            />
+            <CardMedia component="img" />
             <CardContent sx={{ pb: 2, height: "75px" }}>
               <Typography variant="h5" sx={{ pb: 1 }}>
-                {/* {exercise.name.toUpperCase()} */}
-                BICEP CURL
+                Bicep Curls
               </Typography>
-              <Typography variant="body2">
-                {/* {exercise.target.toUpperCase()} */}
-              </Typography>
-              <Typography variant="body2">
-                3000
-                {/* {exercise.id} */}
-              </Typography>
+              <Typography variant="body2">Arms</Typography>
+              <Typography variant="body2">3000</Typography>
             </CardContent>
             <CardActionArea>
               <Button
@@ -55,7 +47,7 @@ const SavedExercisesCard = ({ exercises }) => {
                 color="error"
                 size="medium"
                 sx={{ mt: 2, mb: 2, ml: 1 }}
-                onClick={deleteExerciseFromDB}
+                onClick={pullSavedExercises}
               >
                 Delete
               </Button>
