@@ -9,29 +9,35 @@ import {
 } from "@mui/material";
 import { Box, Container } from "@mui/system";
 import React, { useEffect, useState } from "react";
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../firebase-config";
 
 const SavedExercisesCard = () => {
   const [exercises, setExercises] = useState([]);
 
-  // updates the page whenever a exercise is deleted
+  // updates page whenever a exercise is deleted
   useEffect(() => {
-    // making a connection to the collection
-    const colRef = collection(db, "savedExercises");
     const pullSavedExercises = async () => {
-      // pulling and saving collection data
+      // grabs collection of documents from server and saves them to a variable
+      const colRef = collection(db, "savedExercises");
       const savedExercises = await getDocs(colRef);
-      // setting state to mapped collection of exercises
+      // sets state to mapped collection documents
       setExercises(
         savedExercises.docs.map((savedExercise) => ({
           ...savedExercise.data(),
+          id: savedExercise.id,
         }))
       );
     };
 
     pullSavedExercises();
-  }, []);
+  }, [exercises]);
+
+  const deleteSavedExercise = async (exercise) => {
+    // sets specific document id and then deletes
+    const docRef = doc(db, "savedExercises", exercise.id);
+    await deleteDoc(docRef);
+  };
 
   return (
     <>
@@ -54,12 +60,14 @@ const SavedExercisesCard = () => {
                       {exercise.target.toUpperCase()}
                     </Typography>
                   </CardContent>
-                  <CardActionArea>
+                  <CardActionArea ref={exercise}>
                     <Button
                       variant="outlined"
                       color="error"
                       size="medium"
                       sx={{ mt: 2, mb: 2, ml: 1 }}
+                      // passes the specific exercise object data
+                      onClick={() => deleteSavedExercise(exercise)}
                     >
                       Delete
                     </Button>
