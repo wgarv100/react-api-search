@@ -74,13 +74,6 @@ const Navbar = () => {
             </ListItemButton>
           </ListItem>
         </List>
-        <List>
-          <ListItem disablePadding>
-            <ListItemButton href="/dashboard">
-              <ListItemText primary="Dashboard" />
-            </ListItemButton>
-          </ListItem>
-        </List>
       </Drawer>
     </Box>
   );

@@ -46,19 +46,22 @@ const ExerciseCard = ({ exercise }) => {
             <Typography variant="body2">
               {exercise.target.toUpperCase()}
             </Typography>
-            <Typography variant="body2">{exercise.id}</Typography>
           </CardContent>
-          <CardActionArea>
-            <Button
-              variant="contained"
-              color="error"
-              size="medium"
-              sx={{ m: 2 }}
-              onClick={addExerciseToDB}
-            >
-              Add
-            </Button>
-          </CardActionArea>
+          <Box>
+            {/* <CardActionArea> */}
+            <Box>
+              <Button
+                variant="contained"
+                color="error"
+                size="medium"
+                sx={{ m: 2 }}
+                onClick={addExerciseToDB}
+              >
+                Add
+              </Button>
+            </Box>
+            {/* </CardActionArea> */}
+          </Box>
         </Card>
       </Box>
     </Container>

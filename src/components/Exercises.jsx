@@ -27,7 +27,7 @@ const Exercises = ({ exercises }) => {
       <Container maxWidth="xl">
         <Grid container spacing={1}>
           {currentExercises?.map((exercise, id) => (
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={4} key={exercise.id}>
               <ExerciseCard key={id} exercise={exercise} />
             </Grid>
           ))}
