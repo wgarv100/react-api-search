@@ -10,7 +10,7 @@ const HeroImage = () => {
         sx={{ display: { xs: "none", md: "block" } }}
       ></Box>
       <Box sx={{ mt: "75px", display: { xs: "block", md: "none" } }}>
-        <img width="100%" src={HomeHeroImage} />
+        <img alt="home-hero" width="100%" src={HomeHeroImage} />
         <Container maxWidth="sm" sx={{ p: 0 }}></Container>
       </Box>
     </Box>

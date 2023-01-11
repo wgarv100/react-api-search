@@ -1,11 +1,12 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
+import SavedExercises from "../components/SavedExercises";
 
 const SavedExercisesPage = () => {
   return (
     <Box sx={{ mt: "75px" }}>
-      <Typography variant="h1">Saved Exercises Page</Typography>
+      <SavedExercises />
     </Box>
   );
 };
