@@ -22,7 +22,7 @@ const Exercises = ({ exercises }) => {
   return (
     <Box>
       <Typography variant="h4" color="black" sx={{ p: 3 }}>
-        Results
+        Search Results
       </Typography>
       <Container maxWidth="xl">
         <Grid container spacing={1}>
