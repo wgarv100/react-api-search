@@ -6,14 +6,14 @@ import {
   Typography,
 } from "@mui/material";
 import { Box, Container } from "@mui/system";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const SavedExerciseCard = ({ exercise }) => {
-  // const deleteSavedExercise = async (exercise) => {
-  //   // sets specific document id and then deletes
-  //   const docRef = doc(db, "savedExercises", exercise.id);
-  //   await deleteDoc(docRef);
-  // };
+  const deleteSavedExercise = async (exercise) => {
+    fetch(`http://localhost:3000/savedExercises/${exercise.id}`, {
+      method: "DELETE",
+    });
+  };
 
   return (
     <>
@@ -39,7 +39,7 @@ const SavedExerciseCard = ({ exercise }) => {
               size="medium"
               sx={{ mt: 2, mb: 2, ml: 1 }}
               // passes the specific exercise object data
-              // onClick={() => deleteSavedExercise(exercise)}
+              onClick={() => deleteSavedExercise(exercise)}
             >
               Delete
             </Button>

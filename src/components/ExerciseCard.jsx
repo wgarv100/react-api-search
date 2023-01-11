@@ -8,8 +8,6 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-import { addDoc, collection } from "firebase/firestore";
-import { db } from "../firebase-config";
 
 // bodyPart:"string"
 // equipment:"string"
@@ -20,12 +18,16 @@ import { db } from "../firebase-config";
 
 const ExerciseCard = ({ exercise }) => {
   const addExerciseToDB = async () => {
-    // saves the selected exercise object to the database
-    await addDoc(collection(db, "savedExercises"), {
-      id: exercise.id,
+    const savedExercise = {
       name: exercise.name,
-      gifUrl: exercise.gifUrl,
       target: exercise.target,
+      gifUrl: exercise.gifUrl,
+    };
+
+    await fetch("http://localhost:3000/savedExercises", {
+      method: "POST",
+      body: JSON.stringify(savedExercise),
+      headers: { "Content-Type": "application/json" },
     });
   };
 

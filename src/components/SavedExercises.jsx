@@ -2,30 +2,20 @@ import { Button, Grid, Pagination, Typography } from "@mui/material";
 import { Box, Container } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import SavedExerciseCard from "./SavedExerciseCard";
-import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
-import { db } from "../firebase-config";
 
 const SavedExercises = () => {
   const [exercises, setExercises] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const exercisesPerPage = 24;
 
-  // updates page whenever a exercise is deleted
   useEffect(() => {
-    const pullSavedExercises = async () => {
-      // grabs collection of documents from server and saves them to a variable
-      const colRef = collection(db, "savedExercises");
-      const savedExercises = await getDocs(colRef);
-      // sets state to mapped collection documents
-      setExercises(
-        savedExercises.docs.map((savedExercise) => ({
-          ...savedExercise.data(),
-          id: savedExercise.id,
-        }))
-      );
-    };
-
-    // pullSavedExercises();
+    fetch("http://localhost:3000/savedExercises")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setExercises(data);
+      });
   }, []);
 
   const lastIndex = currentPage * exercisesPerPage;
