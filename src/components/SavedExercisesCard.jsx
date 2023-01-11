@@ -30,7 +30,7 @@ const SavedExercisesCard = () => {
       );
     };
 
-    pullSavedExercises();
+    // pullSavedExercises();
   }, [exercises]);
 
   const deleteSavedExercise = async (exercise) => {

@@ -69,7 +69,7 @@ const Navbar = () => {
         </List>
         <List>
           <ListItem disablePadding>
-            <ListItemButton href="/savedexercises">
+            <ListItemButton href="/savedexercisespage">
               <ListItemText primary="Saved Exercises" />
             </ListItemButton>
           </ListItem>

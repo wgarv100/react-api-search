@@ -1,7 +1,6 @@
 import {
   Button,
   Card,
-  CardActionArea,
   CardContent,
   CardMedia,
   Container,
@@ -48,7 +47,6 @@ const ExerciseCard = ({ exercise }) => {
             </Typography>
           </CardContent>
           <Box>
-            {/* <CardActionArea> */}
             <Box>
               <Button
                 variant="contained"
@@ -60,7 +58,6 @@ const ExerciseCard = ({ exercise }) => {
                 Add
               </Button>
             </Box>
-            {/* </CardActionArea> */}
           </Box>
         </Card>
       </Box>
