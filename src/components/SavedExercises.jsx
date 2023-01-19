@@ -9,7 +9,7 @@ const SavedExercises = () => {
   const exercisesPerPage = 24;
 
   useEffect(() => {
-    fetch("http://localhost:3000/savedExercises")
+    fetch("http://localhost:3001/savedExercises")
       .then((res) => {
         return res.json();
       })

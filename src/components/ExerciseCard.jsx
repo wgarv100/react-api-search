@@ -7,28 +7,47 @@ import {
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
-
-// bodyPart:"string"
-// equipment:"string"
-// gifUrl:"string"
-// id:"string"
-// name:"string"
-// target:"string"
+import React, { useEffect, useState } from "react";
 
 const ExerciseCard = ({ exercise }) => {
+  const [selectedExercise, setSelectedExercise] = useState([]);
+  const [selectedExerciseName, setSelectedExerciseName] = useState();
+  const [fetchedData, setFetchedData] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3001/savedexercises")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setFetchedData(data);
+        return fetchedData;
+      });
+  }, [fetchedData]);
+
   const addExerciseToDB = async () => {
-    const savedExercise = {
+    const savedFetchedName = fetchedData.map((fetched) => fetched.name);
+
+    setSelectedExercise([]);
+    setSelectedExercise({
+      apiId: exercise.id,
       name: exercise.name,
       target: exercise.target,
       gifUrl: exercise.gifUrl,
-    };
-
-    await fetch("http://localhost:3000/savedExercises", {
-      method: "POST",
-      body: JSON.stringify(savedExercise),
-      headers: { "Content-Type": "application/json" },
     });
+
+    setSelectedExerciseName(exercise.name);
+
+    if (savedFetchedName.includes(selectedExerciseName)) {
+      console.log("already added exercise");
+    } else {
+      console.log("adding new exercise");
+      await fetch("http://localhost:3001/savedExercises", {
+        method: "POST",
+        body: JSON.stringify(selectedExercise),
+        headers: { "Content-Type": "application/json" },
+      });
+    }
   };
 
   return (
@@ -55,7 +74,7 @@ const ExerciseCard = ({ exercise }) => {
                 color="error"
                 size="medium"
                 sx={{ m: 2 }}
-                onClick={addExerciseToDB}
+                onClick={() => addExerciseToDB()}
               >
                 Add
               </Button>
