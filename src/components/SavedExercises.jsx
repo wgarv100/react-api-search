@@ -1,6 +1,7 @@
 import { Button, Grid, Pagination, Typography } from "@mui/material";
 import { Box, Container } from "@mui/system";
 import React, { useEffect, useState } from "react";
+import NoSavedExercises from "./NoSavedExercises";
 import SavedExerciseCard from "./SavedExerciseCard";
 
 const SavedExercises = () => {
@@ -32,30 +33,36 @@ const SavedExercises = () => {
 
   return (
     <Box>
-      <Typography variant="h4" color="black" sx={{ p: 3 }}>
-        Saved Exercises
-      </Typography>
-      <Container maxWidth="xl">
-        <Grid container spacing={1}>
-          {currentExercises?.map((exercise, id) => (
-            <Grid item xs={12} md={4} key={exercise.id}>
-              <SavedExerciseCard key={id} exercise={exercise} />
+      {exercises.length ? (
+        <Box>
+          <Typography variant="h4" color="black" sx={{ p: 3 }}>
+            Saved Exercises
+          </Typography>
+          <Container maxWidth="xl">
+            <Grid container spacing={1}>
+              {currentExercises?.map((exercise, id) => (
+                <Grid item xs={12} md={4} key={exercise.id}>
+                  <SavedExerciseCard key={id} exercise={exercise} />
+                </Grid>
+              ))}
             </Grid>
-          ))}
-        </Grid>
-      </Container>
-      <Box sx={{ display: "flex", justifyContent: "center", p: 3 }}>
-        <Pagination
-          count={Math.ceil(exercises.length / exercisesPerPage)}
-          color="error"
-          onChange={handlePagination}
-        />
-      </Box>
-      <Box sx={{ display: "flex", justifyContent: "center", p: 3 }}>
-        <Button variant="contained" color="error" onClick={handleScroll}>
-          Back to Top
-        </Button>
-      </Box>
+          </Container>
+          <Box sx={{ display: "flex", justifyContent: "center", p: 3 }}>
+            <Pagination
+              count={Math.ceil(exercises.length / exercisesPerPage)}
+              color="error"
+              onChange={handlePagination}
+            />
+          </Box>
+          <Box sx={{ display: "flex", justifyContent: "center", p: 3 }}>
+            <Button variant="contained" color="error" onClick={handleScroll}>
+              Back to Top
+            </Button>
+          </Box>
+        </Box>
+      ) : (
+        <NoSavedExercises />
+      )}
     </Box>
   );
 };
