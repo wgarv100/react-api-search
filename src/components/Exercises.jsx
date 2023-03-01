@@ -31,6 +31,7 @@ const Exercises = ({ exercises }) => {
     const postExercise = () => {
       if (savedFetchedName.includes(selectedExercise.name)) {
         console.log("already added exercise");
+        alert("Exercise already exists");
       } else if (selectedExercise.name === undefined) {
         console.log("empty state");
       } else {
