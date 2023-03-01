@@ -1,13 +1,16 @@
 import { Button, Grid, Pagination, Typography } from "@mui/material";
 import { Box, Container } from "@mui/system";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import NoSavedExercises from "./NoSavedExercises";
 import SavedExerciseCard from "./SavedExerciseCard";
+import { ToggleDeleteContext } from "../pages/SavedExercisesPage";
 
 const SavedExercises = () => {
   const [exercises, setExercises] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const exercisesPerPage = 24;
+
+  const [toggleDelete] = useContext(ToggleDeleteContext);
 
   useEffect(() => {
     fetch("http://localhost:3001/savedExercises")
@@ -17,7 +20,7 @@ const SavedExercises = () => {
       .then((data) => {
         setExercises(data);
       });
-  }, []);
+  }, [toggleDelete]);
 
   const lastIndex = currentPage * exercisesPerPage;
   const firstIndex = lastIndex - exercisesPerPage;

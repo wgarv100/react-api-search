@@ -6,10 +6,11 @@ import {
   Typography,
 } from "@mui/material";
 import { Container } from "@mui/system";
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { ToggleDeleteContext } from "../pages/SavedExercisesPage";
 
 const SavedExerciseCard = ({ exercise }) => {
-  const [toggleDelete, setToggleDelete] = useState(false);
+  const [toggleDelete, setToggleDelete] = useContext(ToggleDeleteContext);
 
   const deleteSavedExercise = async (exercise) => {
     await fetch(`http://localhost:3001/savedexercises/${exercise.id}`, {
