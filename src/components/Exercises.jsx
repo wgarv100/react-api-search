@@ -65,7 +65,7 @@ const Exercises = ({ exercises }) => {
         Search Results
       </Typography>
       <Container maxWidth="xl">
-        <Grid container spacing={1}>
+        <Grid container>
           {currentExercises?.map((exercise, id) => (
             <Grid item xs={12} md={4} key={exercise.id}>
               <ExerciseCard

@@ -3,7 +3,6 @@ import {
   Card,
   CardContent,
   CardMedia,
-  Container,
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
@@ -26,38 +25,36 @@ const ExerciseCard = ({ exercise }) => {
   };
 
   return (
-    <Container maxWidth="xl">
-      <Box>
-        <Card>
-          <CardMedia
-            component="img"
-            alt={exercise.name}
-            image={exercise.gifUrl}
-          />
-          <CardContent sx={{ pb: 2, height: "75px" }}>
-            <Typography variant="h5" sx={{ pb: 1 }}>
-              {exercise.name.toUpperCase()}
-            </Typography>
-            <Typography variant="body2">
-              {exercise.target.toUpperCase()}
-            </Typography>
-          </CardContent>
+    <Box>
+      <Card>
+        <CardMedia
+          component="img"
+          alt={exercise.name}
+          image={exercise.gifUrl}
+        />
+        <CardContent sx={{ pb: 2, height: "75px" }}>
+          <Typography variant="h5" sx={{ pb: 1 }}>
+            {exercise.name.toUpperCase()}
+          </Typography>
+          <Typography variant="body2">
+            {exercise.target.toUpperCase()}
+          </Typography>
+        </CardContent>
+        <Box>
           <Box>
-            <Box>
-              <Button
-                variant="contained"
-                color="error"
-                size="medium"
-                sx={{ m: 2 }}
-                onClick={() => saveExerciseToDatabase()}
-              >
-                Save
-              </Button>
-            </Box>
+            <Button
+              variant="contained"
+              color="error"
+              size="medium"
+              sx={{ m: 2 }}
+              onClick={() => saveExerciseToDatabase()}
+            >
+              Save
+            </Button>
           </Box>
-        </Card>
-      </Box>
-    </Container>
+        </Box>
+      </Card>
+    </Box>
   );
 };
 
