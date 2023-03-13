@@ -34,7 +34,7 @@ const Search = ({ setExercises }) => {
           height: "100%",
         }}
       >
-        <Grid item width="50%">
+        <Grid item sx={{ width: { xs: "90vw", lg: "50%" } }}>
           <Stack direction="row">
             <TextField
               onChange={(e) => setSearch(e.target.value.toLowerCase())}
