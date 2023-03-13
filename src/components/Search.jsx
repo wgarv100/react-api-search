@@ -1,5 +1,4 @@
-import { Button, Stack, TextField, Box } from "@mui/material";
-import { Container } from "@mui/system";
+import { Button, Stack, TextField, Box, Grid } from "@mui/material";
 import React, { useState } from "react";
 
 import { options, fetchData } from "../utilities/fetchData";
@@ -26,9 +25,16 @@ const Search = ({ setExercises }) => {
     }
   };
   return (
-    <>
-      <Box sx={{ mt: 5 }}>
-        <Container maxWidth="xl">
+    <Box className="home-hero-image">
+      <Grid
+        container
+        sx={{
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%",
+        }}
+      >
+        <Grid item width="50%">
           <Stack direction="row">
             <TextField
               onChange={(e) => setSearch(e.target.value.toLowerCase())}
@@ -43,9 +49,9 @@ const Search = ({ setExercises }) => {
               Search
             </Button>
           </Stack>
-        </Container>
-      </Box>
-    </>
+        </Grid>
+      </Grid>
+    </Box>
   );
 };
 
